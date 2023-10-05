@@ -3,7 +3,7 @@ package com.tlf.ExpenseShare;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.tlf.ExpenseShare"})
 public class ExpenseShareApplication {
 
 	public static void main(String[] args) {
