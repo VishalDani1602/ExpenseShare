@@ -14,11 +14,11 @@ CREATE TABLE Expense (
 );
 
 -- Table: Group
-CREATE TABLE `Group` (
+CREATE TABLE `GroupList` (
     Group_ID int  NOT NULL AUTO_INCREMENT,
     Name varchar(50)  NULL,
     CreatorID int  NOT NULL,
-    CONSTRAINT Group_pk PRIMARY KEY (Group_ID)
+    CONSTRAINT GroupList_pk PRIMARY KEY (Group_ID)
 );
 
 -- Table: GroupParticipant
@@ -69,19 +69,19 @@ ALTER TABLE Transaction ADD CONSTRAINT ExpenseParticipant_User FOREIGN KEY Expen
 
 -- Reference: Expense_Group (table: Expense)
 ALTER TABLE Expense ADD CONSTRAINT Expense_Group FOREIGN KEY Expense_Group (Group_GId)
-    REFERENCES `Group` (Group_ID);
+    REFERENCES `GroupList` (Group_ID);
 
 -- Reference: Expense_User (table: Expense)
 ALTER TABLE Expense ADD CONSTRAINT Expense_User FOREIGN KEY Expense_User (User_UId)
     REFERENCES User (User_ID);
 
 -- Reference: Group_User (table: Group)
-ALTER TABLE `Group` ADD CONSTRAINT Group_User FOREIGN KEY Group_User (CreatorID)
+ALTER TABLE `GroupList` ADD CONSTRAINT Group_User FOREIGN KEY Group_User (CreatorID)
     REFERENCES User (User_ID);
 
 -- Reference: ParticipantMap_Group (table: GroupParticipant)
 ALTER TABLE GroupParticipant ADD CONSTRAINT ParticipantMap_Group FOREIGN KEY ParticipantMap_Group (Group_GId)
-    REFERENCES `Group` (Group_ID);
+    REFERENCES `GroupList` (Group_ID);
 
 -- Reference: ParticipantMap_User (table: GroupParticipant)
 ALTER TABLE GroupParticipant ADD CONSTRAINT ParticipantMap_User FOREIGN KEY ParticipantMap_User (User_UId)
@@ -97,7 +97,7 @@ ALTER TABLE Settlement ADD CONSTRAINT Settlement_UserTo FOREIGN KEY Settlement_U
 
 -- Reference: Transaction_Group (table: Transaction)
 ALTER TABLE Transaction ADD CONSTRAINT Transaction_Group FOREIGN KEY Transaction_Group (Group_GId)
-    REFERENCES `Group` (Group_ID);
+    REFERENCES `GroupList` (Group_ID);
 
 -- Reference: Transaction_User (table: Transaction)
 ALTER TABLE Transaction ADD CONSTRAINT Transaction_User FOREIGN KEY Transaction_User (User_To)
