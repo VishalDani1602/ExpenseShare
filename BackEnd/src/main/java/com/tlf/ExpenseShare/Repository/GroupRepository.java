@@ -3,6 +3,9 @@ package com.tlf.ExpenseShare.Repository;
 import com.tlf.ExpenseShare.Model.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GroupRepository extends JpaRepository<Group,Integer> {
+import java.util.List;
+import java.util.Optional;
 
+public interface GroupRepository extends JpaRepository<Group,Integer> {
+    List<Group> findByCreatorId(int id);
 }

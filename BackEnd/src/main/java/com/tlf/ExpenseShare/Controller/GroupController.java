@@ -3,15 +3,14 @@ package com.tlf.ExpenseShare.Controller;
 import com.tlf.ExpenseShare.Model.Group;
 import com.tlf.ExpenseShare.Service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/groups")
+@CrossOrigin
 public class GroupController {
 
     private final GroupService groupService;
@@ -21,14 +20,21 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @PostMapping("/")
-    public Group createGroup(Group group) {
+    @PostMapping("/create")
+    public Group createGroup(@RequestBody Group group) {
         return groupService.createGroup(group);
     }
 
     @GetMapping("/")
-    public List<Group> getAllGroups() {
-        return groupService.getAllGroups();
+    public ResponseEntity<List<Group>> getAllGroups() {
+        return ResponseEntity.ok(groupService.getAllGroups());
     }
+
+    @GetMapping("/{user_id}")
+    public ResponseEntity<List<Group>> getSpecificUsers(@PathVariable("user_id") int id) {
+        return ResponseEntity.ok(groupService.getSpecificGroups(id));
+    }
+
+
 }
 
