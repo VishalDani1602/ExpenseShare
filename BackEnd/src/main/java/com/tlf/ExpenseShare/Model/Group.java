@@ -13,8 +13,9 @@ public class Group {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "CreatorID")
-    private Long creatorId;
+    @ManyToOne
+    @JoinColumn(name = "CreatorID", referencedColumnName = "User_ID")
+    private User user;
 
 
 
@@ -34,12 +35,12 @@ public class Group {
         this.name = name;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+    public User getUser() {
+        return user;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

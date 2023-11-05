@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface GroupRepository extends JpaRepository<Group,Integer> {
-    List<Group> findByCreatorId(int id);
+//    List<Group> findByCreatorId(int id);
 }

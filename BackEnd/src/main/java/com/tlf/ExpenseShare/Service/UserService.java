@@ -37,7 +37,9 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        users.forEach(user -> user.setPassword(null));
+        return users;
     }
     public Optional<User> getSpecificUser(int id) {
         return userRepository.findById(id);
