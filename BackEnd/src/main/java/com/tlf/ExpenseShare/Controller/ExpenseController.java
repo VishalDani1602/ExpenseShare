@@ -30,4 +30,12 @@ public class ExpenseController {
     public ResponseEntity<List<Expense>> getSpecificExpense(@PathVariable("group_id") int id) {
         return ResponseEntity.ok(expenseService.getSpecificExpense(id));
     }
+
+    @GetMapping("/exp")
+    public ResponseEntity<String> getUserExpense(
+            @RequestParam("groupId") String groupId,
+            @RequestParam("userId") String userId) {
+
+        return ResponseEntity.ok(expenseService.getUserExpense(groupId,userId)); // Return a response to the client
+    }
 }

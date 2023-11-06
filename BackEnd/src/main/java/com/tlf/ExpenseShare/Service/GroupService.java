@@ -67,12 +67,12 @@ public class GroupService {
 
     public List<Group> getSpecificGroups(int id){
 //        return groupRepository.findByCreatorId(id);
-        List<Group> groupList = groupRepository.findAll();
+        List<GroupParticipants> groupList = groupParticipantRepository.findAll();
         List<Group> filteredGroups = new ArrayList<>();
 
-        for (Group group : groupList) {
+        for (GroupParticipants group : groupList) {
             if (group.getUser().getUserId() == id) {
-                filteredGroups.add(group);  // Add the group to the filtered list if the condition is met
+                filteredGroups.add(group.getGroup());  // Add the group to the filtered list if the condition is met
             }
         }
 

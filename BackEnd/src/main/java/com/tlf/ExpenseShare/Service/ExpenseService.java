@@ -61,6 +61,29 @@ public class ExpenseService {
         return filteredExpense;
     }
 
+    public String getUserExpense(String groupId, String userId){
+        String result = "";
+        int sum = 0;
+        List<Transaction> transactionList = transactionRepository.findAll();
+        for (Transaction transaction : transactionList) {
+            if(transaction.getGroup().getGroupId() == Integer.parseInt(groupId)) {
+                if(transaction.getUserFrom().getUserId() == Integer.parseInt(userId)){
+                    sum = sum - transaction.getAmount();
+                }
+                if(transaction.getUserTo().getUserId() == Integer.parseInt(userId)){
+                    sum = sum + transaction.getAmount();
+                }
+            }
+        }
+        if(sum<0){
+            sum = sum*-1;
+            result = result+"Overall, you have to get $"+sum;
+        }else{
+            result = result+"Overall, you have to pay $"+sum;
+        }
+        return result;
+    }
+
     public List<GroupParticipants> getGroupParticipantsForGroup(int groupId) {
         // Use the groupParticipantRepository to retrieve group participants based on the group ID
         List<GroupParticipants> allParticipants = groupParticipantRepository.findAll();
