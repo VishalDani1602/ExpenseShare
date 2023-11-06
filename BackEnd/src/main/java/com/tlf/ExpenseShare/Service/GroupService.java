@@ -40,14 +40,21 @@ public class GroupService {
     }
 
     public GroupParticipants addMember(@RequestBody GroupParticipants groupParticipants) {
-        return groupParticipantRepository.save(groupParticipants);
-//        GroupParticipants creatorParticipant = new GroupParticipants();
-//        System.out.println(group);
-//        creatorParticipant.setUser(group.getUser());
-//        creatorParticipant.setGroup(group);
-//
-//        // Save the GroupParticipant entry
-//        return groupParticipantRepository.save(creatorParticipant);
+        List<GroupParticipants> groupParticipantsList = groupParticipantRepository.findAll();
+        boolean match = false;
+        for (GroupParticipants participants : groupParticipantsList) {
+            if(participants.getGroup().getGroupId() == groupParticipants.getGroup().getGroupId()
+                    && participants.getUser().getUserId() == groupParticipants.getUser().getUserId() && !match){
+                System.out.println("in match");
+                match = true;
+            }
+        }
+        if(match) {
+            return groupParticipants;
+        }else {
+            return groupParticipantRepository.save(groupParticipants);
+        }
+
     }
 
     public List<Group> getAllGroups() {
