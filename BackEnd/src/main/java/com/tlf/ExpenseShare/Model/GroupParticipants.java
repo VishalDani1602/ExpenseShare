@@ -8,7 +8,7 @@ public class GroupParticipants {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "GroupParticipant_ID")
+    @Column(name = "Groupparticipant_ID")
     private int groupparticipantId;
 
     @ManyToOne

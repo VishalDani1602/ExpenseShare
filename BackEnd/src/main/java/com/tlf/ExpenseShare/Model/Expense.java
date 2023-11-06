@@ -31,6 +31,14 @@ public class Expense {
     @JoinColumn(name = "Group_GId", referencedColumnName = "Group_ID")
     private Group group;
 
+    public int getExpenseId() {
+        return expenseId;
+    }
+
+    public void setExpenseId(int expenseId) {
+        this.expenseId = expenseId;
+    }
+
     public String getDescription() {
         return description;
     }

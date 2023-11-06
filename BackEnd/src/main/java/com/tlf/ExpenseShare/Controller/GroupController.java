@@ -1,6 +1,7 @@
 package com.tlf.ExpenseShare.Controller;
 
 import com.tlf.ExpenseShare.Model.Group;
+import com.tlf.ExpenseShare.Model.GroupParticipants;
 import com.tlf.ExpenseShare.Service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,11 @@ public class GroupController {
     @PostMapping("/create")
     public Group createGroup(@RequestBody Group group) {
         return groupService.createGroup(group);
+    }
+
+    @PostMapping("/add")
+    public GroupParticipants addMember(@RequestBody GroupParticipants groupParticipants) {
+        return groupService.addMember(groupParticipants);
     }
 
     @GetMapping("/")

@@ -39,8 +39,23 @@ public class GroupService {
         return savedGroup;
     }
 
+    public GroupParticipants addMember(@RequestBody GroupParticipants groupParticipants) {
+        return groupParticipantRepository.save(groupParticipants);
+//        GroupParticipants creatorParticipant = new GroupParticipants();
+//        System.out.println(group);
+//        creatorParticipant.setUser(group.getUser());
+//        creatorParticipant.setGroup(group);
+//
+//        // Save the GroupParticipant entry
+//        return groupParticipantRepository.save(creatorParticipant);
+    }
+
     public List<Group> getAllGroups() {
         return groupRepository.findAll();
+    }
+
+    public List<GroupParticipants> getAllGroupsParticipants() {
+        return groupParticipantRepository.findAll();
     }
 
     public List<Group> getSpecificGroups(int id){
