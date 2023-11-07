@@ -77,7 +77,7 @@ public class ExpenseService {
         }
         if(sum<0){
             sum = sum*-1;
-            result = result+"Overall, you have to get $"+sum;
+            result = result+"Overall, you will get $"+sum;
         }else{
             result = result+"Overall, you have to pay $"+sum;
         }
